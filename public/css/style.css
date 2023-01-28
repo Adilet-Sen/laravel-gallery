@@ -1,0 +1,12 @@
+div.gallery-item {
+    margin: 10px 0;
+}
+
+button.my-btn {
+    margin-bottom: 10px;
+}
+
+.gallery-image {
+    display: block;
+    margin: 0px auto;
+}
