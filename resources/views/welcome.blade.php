@@ -7,11 +7,11 @@
             @foreach($imagesInView as $image)
                 <div class="col-md-3 gallery-item">
                     <div>
-                        <img class="img-thumbnail" src="{{$image}}" alt="">
+                        <img class="img-thumbnail" src="{{$image->image}}" alt="">
                         <div class="d-grid gap-2">
-                            <a href="/show" class="btn btn-info">Show</a>
-                            <a href="/edit" class="btn btn-warning">Edit</a>
-                            <a href="/delete" class="btn btn-danger">Delete</a>
+                            <a href="/show/{{$image->id}}" class="btn btn-info">Show</a>
+                            <a href="/edit/{{$image->id}}" class="btn btn-warning">Edit</a>
+                            <a href="/delete/{{$image->id}}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
