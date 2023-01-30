@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,12 @@ Route::get('/create',function (){
 
 Route::post('/store', function (Request $request){
     $image = $request->file('image');
-    dd($image->store('uploads'));
+    $filename = $request->image->store('uploads');
+
+    DB::table('images')->insert(
+        ['image'=>$filename]
+    );
+    return redirect('/');
 });
 
 Route::get('/show',function (){
