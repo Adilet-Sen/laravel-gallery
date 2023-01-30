@@ -75,3 +75,13 @@ Route::post('/update/{id}', function ($id, Request $request){
 
     return redirect('/');
 });
+
+Route::get('/delete/{id}', function ($id){
+    $myImage = DB::table('images')
+        ->select('*')
+        ->where('id', $id)
+        ->first();
+    Storage::delete($myImage->image);
+    DB::table('images')->where('id',$id)->delete();
+    return redirect('/');
+});
