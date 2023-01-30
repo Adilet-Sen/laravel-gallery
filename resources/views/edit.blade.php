@@ -5,11 +5,12 @@
         <h1>Edit Image</h1>
         <div class="row">
             <div class="col-md-3">
-                <img src="img.jpg" class="img-thumbnail">
+                <img src="/{{$imageInView->image}}" class="img-thumbnail">
             </div>
-            <form class="form" action="/update" method="post" enctype="multipart/form-data">
+            <form class="form" action="/update/{{$imageInView->id}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
                 <div class="form-control mb-1">
-                    <input type="file">
+                    <input name="image" type="file">
                 </div>
                 <button class="btn btn-success my-btn" type="submit">Update Image</button>
             </form>

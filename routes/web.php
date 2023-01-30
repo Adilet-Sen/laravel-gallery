@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,26 @@ Route::get('/show/{id}',function ($id){
     return view('show', ['imageInView' => $myImage]);
 });
 
-Route::get('/edit', function (){
-    return view('/edit');
+Route::get('/edit/{id}', function ($id){
+    $myImage = DB::table('images')
+        ->select('*')
+        ->where('id', $id)
+        ->first();
+
+
+    return view('/edit', ['imageInView'=>$myImage]);
+});
+
+Route::post('/update/{id}', function ($id, Request $request){
+    $myImage = DB::table('images')
+        ->select('*')
+        ->where('id', $id)
+        ->first();
+    $fileName = $request->image->store('uploads');
+    Storage::delete($myImage->image);
+    DB::table('images')
+        ->where('id', $id)
+        ->update(['image' => $fileName]);
+
+    return redirect('/');
 });
