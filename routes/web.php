@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,11 @@ Route::get('/about',function (){
 
 Route::get('/create',function (){
     return view('create');
+});
+
+Route::post('/store', function (Request $request){
+    $image = $request->file('image');
+    dd($image->store('uploads'));
 });
 
 Route::get('/show',function (){
